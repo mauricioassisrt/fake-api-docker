@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  node-fake:
+    build: .
+    container_name: fake-api
+    restart: always
+    ports:
+      - 3000:3000
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fullcycle
+    ports:
+      - "3307:3306"  # Mapeia a porta 3306 do contêiner para a porta 3307 no host
+  adminer:
+    image: adminer
+    ports:
+      - "8081:8080"
